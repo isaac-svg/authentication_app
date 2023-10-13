@@ -1,5 +1,6 @@
 import { NextAuthOptions } from "next-auth";
 import credentialsProvider from "next-auth/providers/credentials"
+import githubProvider  from "next-auth/providers/github"
 import connectDB from "../../db/connectdb";
 import User from "../../models/model";
 import bcrypt from "bcryptjs"
@@ -65,6 +66,10 @@ const authOptions: NextAuthOptions  = {
            ,
 
            
+        }),
+        githubProvider({
+            clientId: process.env.GITHUB_ID as string,
+            clientSecret: process.env.GITHUB_SECRET as string
         })
         
     ],
@@ -86,9 +91,6 @@ const authOptions: NextAuthOptions  = {
           },
 
     },
-    pages:{
-        newUser:"/"
-    }
 }
 
 const handler = NextAuth(authOptions)
