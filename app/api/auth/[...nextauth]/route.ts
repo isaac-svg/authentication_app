@@ -25,7 +25,7 @@ const authOptions: NextAuthOptions  = {
 
             const email = credentials?.email;
             const password = credentials?.password
-            console.log(email, password)
+            
             if (!verifyCredentials(email, password)){
                 return null
             }
@@ -57,7 +57,6 @@ const authOptions: NextAuthOptions  = {
             
             if (!isMatch)
             {
-                console.log("HACK ATTEMPT")
                 return null
             }
 
@@ -91,6 +90,9 @@ const authOptions: NextAuthOptions  = {
           },
 
     },
+    pages:{
+        signIn:"/auth/signin"
+    }
 }
 
 const handler = NextAuth(authOptions)

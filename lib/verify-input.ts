@@ -16,18 +16,15 @@ export const verifyCredentials  = (email:string | undefined, password:string | u
 
  if (typeof(email) !== "string" || typeof(password) !== "string"){
 
-    console.log("WE ARE NOT STRINGS")
     return false
  }
  const reg = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g)
 
  if (!reg.test(email)){
 
-    console.log("reg failed")
 
     return false
  }
 
- console.log("I passed")
  return true
 }
