@@ -1,7 +1,7 @@
 
+type checker = (email:string | undefined, password:string | undefined) => boolean
 
-
-export const verifyCredentials  = (email:string | undefined, password:string | undefined): boolean =>{
+export const verifyCredentials: checker  = (email:string | undefined, password:string | undefined): boolean =>{
 
     // check if anyof theme doesn't have a string type
     // check if any if null

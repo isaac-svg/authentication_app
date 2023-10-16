@@ -8,7 +8,7 @@ import NextAuth from "next-auth/next";
 import { verifyCredentials } from "@/lib/verify-input";
 
 
-const authOptions: NextAuthOptions  = {
+export const authOptions: NextAuthOptions  = {
 
     providers:[
         credentialsProvider({
@@ -25,6 +25,8 @@ const authOptions: NextAuthOptions  = {
 
             const email = credentials?.email;
             const password = credentials?.password
+
+            console.log(email, password)
             
             if (!verifyCredentials(email, password)){
                 return null
@@ -91,7 +93,8 @@ const authOptions: NextAuthOptions  = {
 
     },
     pages:{
-        signIn:"/auth/signin"
+        signIn:"/auth/signin",
+        
     }
 }
 

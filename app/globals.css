@@ -3,25 +3,33 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground: hsla(0, 0%, 100%, 1);
+  --form-border: 1px solid hsl(0, 0%, 74%);
+  --fw-bold:600;
+  --fw-sm:400;
+  --invite-text-dark: hsla(0, 0%, 88%, 1);
+  --invite-text-light: hsla(0, 0%, 20%, 1);
+  --profile-text-main-light: hsla(0, 0%, 0%, 1);
+  --profile-text-label-light: hsla(0, 0%, 74%, 1);
+
+
+  --label-copy: hsla(0, 0%, 51%, 1);
+  --register-btn: hsla(214, 84%, 56%, 1);
+  --register-btn-txt: hsla(0, 0%, 100%, 1);
+
+
+
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --foreground: hsl(260, 8%, 15%);
+    /* --background-start-rgb: hsla(260, 8%, 15%, 1);
+    --background-end-rgb: hsla(260, 8%, 15%, 1); */
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  /* color: rgb(var(--foreground-rgb)); */
+  background-color: var(--foreground);
 }
