@@ -22,6 +22,7 @@ export default function SignIn(){
         e.preventDefault();
         console.log("first")
        const data = await signIn("credentials", { email, password })
+       console.log(data, "data")
         setEmail("")
         setPassword("")
     
@@ -73,7 +74,7 @@ export default function SignIn(){
       <div className="w-full">
         <div className="w-full rounded-lg border-2 mb-2 border-invite-text-light relative  bg-foreground-light">
           <label htmlFor="email" className="absolute top-0 left-2 bottom-0 w-8 object-center z-10 border-0"> <Image src={"/email.svg"} layout="fill" alt="Email"/></label>
-          <input type="text" id="email" value={email} onChange={(e:ChangeEvent<HTMLInputElement>)=>setEmail(e.target.value)} className="w-full pl-11 text-lg py-2 pr-2 outline-none border-none rounded-lg text-slate-800 placeholder:text-label-copy focus-within:outline-foreground-dark" placeholder="Email" />
+          <input type="text" id="email" value={email} onChange={(e:ChangeEvent<HTMLInputElement>)=>setEmail(e.target.value)} className="w-full pl-11 text-lg py-2 pr-2 outline-none border-none rounded-lg text-slate-800 placeholder:text-label-copy focus-within:outline-foreground-dark" placeholder="Email"  />
         </div>
 
         <div className="w-full rounded-lg border-2 mb-2 border-invite-text-light relative  bg-foreground-light ">

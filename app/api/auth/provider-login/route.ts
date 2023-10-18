@@ -11,9 +11,7 @@ export  async function POST(req:Request, res:Response){
 
     try {
         await connectDB()
-        // const session = await getServerSession(authOptions)
         
-        // console.log(session?.user, "session")
         const payload =  await req.json()
         console.log(payload, "payload")
 
@@ -21,7 +19,7 @@ export  async function POST(req:Request, res:Response){
         {
             return NextResponse.json({message:"Authentication failed"})
         }
-        console.log(payload.user, "payload user")
+
         const tempUser =  new User(payload.user)
         const user = await tempUser.save()
         console.log(user, "saved user")
