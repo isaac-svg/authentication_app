@@ -4,6 +4,8 @@ import githubProvider  from "next-auth/providers/github"
 import googleProvider  from "next-auth/providers/google"
 import facebookProvider  from "next-auth/providers/facebook"
 import twitterProvider  from "next-auth/providers/twitter"
+import Email  from "next-auth/providers/email"
+
 import connectDB from "../../db/connectdb";
 import User from "../../models/model";
 import bcrypt from "bcryptjs"

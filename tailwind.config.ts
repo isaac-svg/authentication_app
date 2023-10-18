@@ -12,6 +12,13 @@ const config: Config = {
     extend: {
       fontSize:{
         "fluid-text":"clamp(12px, 2vw + 4px, 14px)",
+        "invitation":"clamp(0.85rem, 4vw + 0.85rem, 1.25rem)",
+      },
+      padding: {
+        "form-padding":"clamp(0.5rem, 0.5rem + 2vw, 2rem)"
+      },
+      lineHeight:{
+          "invitation-lh":"clamp(0.75rem, 0.75rem + 4vw, 1.25rem)"
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

@@ -8,6 +8,7 @@ import { authOptions } from "../../api/auth/[...nextauth]/route";
 import { BuiltInProviderType } from "next-auth/providers/index";
 import Image from "next/image";
 import { resolve } from "styled-jsx/css";
+import Link from "next/link";
 
 
 export default function SignIn(){
@@ -60,26 +61,26 @@ export default function SignIn(){
     renderProviders()
     },[])
   return  <section className="grid place-content-center items-center justify-center h-screen">
-    <form className="w-[90%] border-2 p-8 rounded-lg border-custom-ash h-auto mx-auto max-w-xl" onSubmit={(e: FormEvent<HTMLFormElement>)=>handleSubmit(e)}>
+    <form className="w-[90%] border-[1px] p-form-padding rounded-lg border-custom-ash h-auto mx-auto max-w-xl " onSubmit={(e: FormEvent<HTMLFormElement>)=>handleSubmit(e)}>
       <div className="">
         <div className="w-44 h-16">
           <Image alt="logo" src={"/devchallenges-light.svg"} width={160} height={160}  priority className="w-full"  />
         </div>
-        <h3 className="text-invite-text-light font-semibold text-xl dark:text-invite-text-dark">Join thousands of learners from around the world </h3>
+        <span className="block text-invite-text-light font-semibold text-invitation dark:text-invite-text-dark leading-invitation-lh">Join thousands of learners from around the world </span>
 
-        <span className=" py-2 inline-block text-invite-text-light text-lg font-normal dark:text-invite-text-dark">Master web development by making real-life projects. There are multiple paths for you to choose</span>
+        <h3 className="py-2 inline-block text-invite-text-light  font-normal dark:text-invite-text-dark">Master web development by making real-life projects. There are multiple paths for you to choose</h3>
 
       </div>
       {/* input fields */}
       <div className="w-full">
         <div className="w-full rounded-lg border-2 mb-2 border-invite-text-light relative  bg-foreground-light">
           <label htmlFor="email" className="absolute top-0 left-2 bottom-0 w-8 object-center z-10 border-0"> <Image src={"/email.svg"} layout="fill" alt="Email"/></label>
-          <input type="text" id="email" value={email} onChange={(e:ChangeEvent<HTMLInputElement>)=>setEmail(e.target.value)} className="w-full pl-11 text-lg py-2 pr-2 outline-none border-none rounded-lg text-slate-800 placeholder:text-label-copy focus-within:outline-foreground-dark" placeholder="Email"  />
+          <input type="text" id="email" value={email} onChange={(e:ChangeEvent<HTMLInputElement>)=>setEmail(e.target.value)} className="w-full pl-11 text-base py-2 pr-2 outline-none border-none rounded-lg text-slate-800 placeholder:text-label-copy focus-within:outline-foreground-dark" placeholder="Email"  />
         </div>
 
         <div className="w-full rounded-lg border-2 mb-2 border-invite-text-light relative  bg-foreground-light ">
           <label htmlFor="password" className="absolute top-0 left-2 bottom-0 w-8 object-center z-10 border-0"> <Image src={"/password.svg"} layout="fill" alt="Email"/></label>
-          <input type="password" value={password} onChange={(e:ChangeEvent<HTMLInputElement>)=>setPassword(e.target.value)} id="password" className="w-full pl-11 text-lg py-2 pr-2 outline-none border-none rounded-lg text-slate-800 placeholder:text-label-copy focus-within:outline-foreground-dark " placeholder="Password" />
+          <input type="password" value={password} onChange={(e:ChangeEvent<HTMLInputElement>)=>setPassword(e.target.value)} id="password" className="w-full pl-11 text-base py-2 pr-2 outline-none border-none rounded-lg text-slate-800 placeholder:text-label-copy focus-within:outline-foreground-dark " placeholder="Password" />
         </div>
 
         {/* button */}
@@ -88,24 +89,24 @@ export default function SignIn(){
 
       {/* auth providers */}
       <div className="">
-        <p className="text-label-copy font-normal text-fluid-text  mx-auto text-center my-4 w-[90%]">or continue with these social profile</p>
+        <p className="text-label-copy font-normal text-fluid-text  mx-auto text-center my-4 w-[90%] ">or continue with these social profile</p>
 
-        <div className="flex justify-around items-center w-[90%] mx-auto ">
+        <div className="flex justify-around items-center w-[70%] mx-auto ">
 
         <div className="w-[20%] h-auto cursor-pointer" onClick={()=>handleAuthProvider("google")}>
-        <Image alt="google icon" src={"/Google.svg"} width={60} height={60}/>
+        <Image alt="google icon" src={"/Google.svg"} width={40} height={40}/>
         </div>
 
         <div className="w-[20%] h-auto cursor-pointer" onClick={()=>handleAuthProvider("facebook")}>
-        <Image alt="google icon" src={"/Facebook.svg"} width={60} height={60}/>
+        <Image alt="facebook icon" src={"/Facebook.svg"} width={40} height={40}/>
         </div>
 
         <div className="w-[20%] h-auto cursor-pointer" onClick={()=>handleAuthProvider("twitter")}>
-        <Image alt="google icon" src={"/Twitter.svg"} width={60} height={60}/>
+        <Image alt="google icon" src={"/Twitter.svg"} width={40} height={40}/>
         </div>
 
         <div className="w-[20%] h-auto cursor-pointer" onClick={()=>handleAuthProvider("github")}>
-        <Image alt="google icon" src={"/Github.svg"} width={60} height={60}/>
+        <Image alt="google icon" src={"/Github.svg"} width={40} height={40}/>
         </div>
         
         </div>
@@ -113,7 +114,9 @@ export default function SignIn(){
 
         
       </div>
-
+        <div className="xs:w-[90%] sm:w-3/4 mx-auto  my-4 flex items-center">
+          <span className="text-label-copy inline-block mx-auto text-sm "> Don't have an account? <Link href="/signup" className="text-register-btn">Register</Link> </span>
+        </div>
     </form>
   </section>
     
