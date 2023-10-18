@@ -2,15 +2,17 @@
 
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import type { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import {  ClientSafeProvider, LiteralUnion, getProviders, signIn, } from "next-auth/react"
+import {  ClientSafeProvider, LiteralUnion, getProviders, signIn, useSession, } from "next-auth/react"
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "../../api/auth/[...nextauth]/route";
 import { BuiltInProviderType } from "next-auth/providers/index";
 import Image from "next/image";
+import { resolve } from "styled-jsx/css";
 
 
-export default function SignIn({ providers }: InferGetServerSidePropsType<typeof getServerSideProps>){
+export default function SignIn(){
 
+  const {data} = useSession()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
  
@@ -22,9 +24,25 @@ export default function SignIn({ providers }: InferGetServerSidePropsType<typeof
        const data = await signIn("credentials", { email, password })
         setEmail("")
         setPassword("")
-        console.log(data)
-        console.log('SDFDSFDSFDSFDSFDSFDSFDSFDSFDSFS\nsdfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfds')
     
+    }
+    const handleAuthProvider = async (provider :string)=>{
+      try{
+
+        await signIn(provider);
+
+        console.log(data, "data")
+        const res = await fetch("/api/auth/provider-login",{
+          method:"POST",
+          headers:{
+            "Content-Type":"application/json"
+          },
+          body:JSON.stringify(data)
+        })
+    console.log(res, "res")
+      }catch(error:any){
+
+      }
     }
 
     
@@ -41,7 +59,7 @@ export default function SignIn({ providers }: InferGetServerSidePropsType<typeof
     renderProviders()
     },[])
   return  <section className="grid place-content-center items-center justify-center h-screen">
-    <form className="w-[90%] border-2 p-8 rounded-lg border-custom-ash h-auto mx-auto" onSubmit={(e: FormEvent<HTMLFormElement>)=>handleSubmit(e)}>
+    <form className="w-[90%] border-2 p-8 rounded-lg border-custom-ash h-auto mx-auto max-w-xl" onSubmit={(e: FormEvent<HTMLFormElement>)=>handleSubmit(e)}>
       <div className="">
         <div className="w-44 h-16">
           <Image alt="logo" src={"/devchallenges-light.svg"} width={160} height={160}  priority className="w-full"  />
@@ -69,12 +87,30 @@ export default function SignIn({ providers }: InferGetServerSidePropsType<typeof
 
       {/* auth providers */}
       <div className="">
-        <p>or continue with these social profile</p>
+        <p className="text-label-copy font-normal text-fluid-text  mx-auto text-center my-4 w-[90%]">or continue with these social profile</p>
 
-        <div className="">
+        <div className="flex justify-around items-center w-[90%] mx-auto ">
 
+        <div className="w-[20%] h-auto cursor-pointer" onClick={()=>handleAuthProvider("google")}>
+        <Image alt="google icon" src={"/Google.svg"} width={60} height={60}/>
+        </div>
+
+        <div className="w-[20%] h-auto cursor-pointer" onClick={()=>handleAuthProvider("facebook")}>
+        <Image alt="google icon" src={"/Facebook.svg"} width={60} height={60}/>
+        </div>
+
+        <div className="w-[20%] h-auto cursor-pointer" onClick={()=>handleAuthProvider("twitter")}>
+        <Image alt="google icon" src={"/Twitter.svg"} width={60} height={60}/>
+        </div>
+
+        <div className="w-[20%] h-auto cursor-pointer" onClick={()=>handleAuthProvider("github")}>
+        <Image alt="google icon" src={"/Github.svg"} width={60} height={60}/>
+        </div>
         
         </div>
+
+
+        
       </div>
 
     </form>
@@ -99,7 +135,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     }
   
     const providers = await getProviders();
-    
+    console.log(providers)
     return {
       props: { providers: providers ?? [] },
     }

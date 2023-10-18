@@ -6,21 +6,19 @@ const userSchema = new mongoose.Schema({
 
     email:{
         type: String,
-        require: true,
     },
-    username:{
+    name:{
         type:String,
-        
         min: 3,
         max: 50,
+        require: true
     },
 
     password:{
         type:String,
-        require:true
     },
 
-    avatar:{
+    image:{
         type: String,
     },
 

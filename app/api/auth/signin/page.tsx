@@ -2,13 +2,12 @@
 
 import Image from "next/image"
 import dynamic from "next/dynamic";
+import SignIn from  "../../../components/signin/SignIn"
 
 const page = () => {
 
 
-const SignIn = dynamic(() => import("../../../components/signin/SignIn"), {
-  ssr: false,
-});
+
   return (
     <>
     <SignIn/>

@@ -10,6 +10,9 @@ const config: Config = {
   plugins: [require("tw-elements/dist/plugin.cjs")],
   theme: {
     extend: {
+      fontSize:{
+        "fluid-text":"clamp(12px, 2vw + 4px, 14px)",
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -26,6 +29,7 @@ const config: Config = {
         "foreground-dark": "hsl(260, 8%, 15%)",
         "foreground-light": "hsla(0, 0%, 100%, 1)",
           "custom-ash":       "hsl(0, 0%, 74%)",
+        
       }
     },
   },
