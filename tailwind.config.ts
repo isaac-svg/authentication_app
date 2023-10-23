@@ -15,7 +15,8 @@ const config: Config = {
         "invitation":"clamp(0.85rem, 4vw + 0.85rem, 1.25rem)",
       },
       padding: {
-        "form-padding":"clamp(0.5rem, 0.5rem + 2vw, 2rem)"
+        "form-padding":"clamp(0.5rem, 0.5rem + 2vw, 2rem)",
+        "page-padding":"clamp(0.5rem, 0.5rem + 2vw, 2rem)"
       },
       lineHeight:{
           "invitation-lh":"clamp(0.75rem, 0.75rem + 4vw, 1.25rem)"
@@ -35,8 +36,7 @@ const config: Config = {
         "register-btn-txt": "hsla(0, 0%, 100%, 1)",
         "foreground-dark": "hsl(260, 8%, 15%)",
         "foreground-light": "hsla(0, 0%, 100%, 1)",
-          "custom-ash":       "hsl(0, 0%, 74%)",
-        
+          "custom-ash":       "hsl(0, 0%, 74%)",  
       }
     },
   },
