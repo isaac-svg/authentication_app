@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import AuthProvider from './context/provider'
 const inter = Inter({ subsets: ['latin'] })
 import "tw-elements/dist/css/tw-elements.min.css";
+import UserDataProvider from './context/userdata/provider'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,7 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AuthProvider>
+        <UserDataProvider>
       <body className={inter.className}>{children}</body>
+      </UserDataProvider>
       </AuthProvider>
     </html>
   )

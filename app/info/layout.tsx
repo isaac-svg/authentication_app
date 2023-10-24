@@ -1,7 +1,9 @@
 "use client"
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode, useContext, useEffect, useState } from 'react'
+import { UserContext } from '../context/userdata/provider'
+// import { setUserImage } from '../context/userdata/provider'
 
 type layoutProp ={
     children:ReactNode
@@ -14,19 +16,30 @@ type sessionType ={
     },
     expires:string
 }
-const layout = () => {
+const layout = ({children}:layoutProp) => {
 
     const [isVisible, setIsVisible] = useState<boolean>(false)
+    const { setUserData}  = useContext(UserContext)
     const {data} = useSession()
+
     let session =  data as sessionType
+    useEffect(()=>{
+       if (data){
+        updateImage()
+       }
+    },[data])
 
+    const updateImage = () =>{
+        console.log(session, "session from function")
+        setUserData(session)
+    }
     // setUsersession(session)
-    console.log(data,"data")
-    console.log(session, "session")
+    // console.log(data,"data")
+    // console.log(session, "session")
 
-    console.log(session?.user.image!,"Image")
 
   return (
+    <>
     <nav className='px-page-padding flex justify-between py-4 h-[50px]'>
         <div className="">
             <Image  alt='Logo' src={"/devchallenges-light.svg"} width={100} height={100}/>
@@ -55,6 +68,8 @@ const layout = () => {
             </li>
         </ul>
     </nav>
+    {children}
+    </>
   )
 }
 

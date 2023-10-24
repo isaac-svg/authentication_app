@@ -13,10 +13,16 @@ const config: Config = {
       fontSize:{
         "fluid-text":"clamp(12px, 2vw + 4px, 14px)",
         "invitation":"clamp(0.85rem, 4vw + 0.85rem, 1.25rem)",
+        "head-text":"clamp(1rem, 1rem + 5vw, 2rem)",
+        "small":"clamp(0.65rem, 0.65rem + 1vw, 1.5rem)",
+        "custom-medium":"clamp(0.5rem, 0.5rem + 1vw, 1rem)",
       },
       padding: {
         "form-padding":"clamp(0.5rem, 0.5rem + 2vw, 2rem)",
-        "page-padding":"clamp(0.5rem, 0.5rem + 2vw, 2rem)"
+        "page-padding":"clamp(0.5rem, 0.5rem + 2vw, 2rem)",
+        "btn-padding-x":"clamp(0.75rem, 0.75rem + 1vw, 1rem)",
+        "btn-padding-y":"clamp(0.3rem, 0.3rem + 1vw, 0.5rem)",
+
       },
       lineHeight:{
           "invitation-lh":"clamp(0.75rem, 0.75rem + 4vw, 1.25rem)"
@@ -37,6 +43,9 @@ const config: Config = {
         "foreground-dark": "hsl(260, 8%, 15%)",
         "foreground-light": "hsla(0, 0%, 100%, 1)",
           "custom-ash":       "hsl(0, 0%, 74%)",  
+      },
+      minWidth:{
+        "tablet":"400px"
       }
     },
   },
