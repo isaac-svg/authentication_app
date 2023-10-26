@@ -10,6 +10,19 @@ const config: Config = {
   plugins: [require("tw-elements/dist/plugin.cjs")],
   theme: {
     extend: {
+      animation: {
+        'move-background': 'moveBackground 4s linear infinite',
+      },
+      keyframes: {
+        moveBackground: {
+          '0%': { backgroundPosition: '0 0' },
+          '100%': { backgroundPosition: '100% 100%' },
+        },
+      },
+      width:{
+        "input-w":"clamp(200px, 200px + 12vw, 450px)",
+      },
+      
       fontSize:{
         "fluid-text":"clamp(12px, 2vw + 4px, 14px)",
         "invitation":"clamp(0.85rem, 4vw + 0.85rem, 1.25rem)",
@@ -34,6 +47,13 @@ const config: Config = {
       },
       colors:{
         "invite-text-dark":" hsla(0, 0%, 88%, 1)",
+        "link-color":"hsla(202, 71%, 52%, 1)",
+        "border-color":"hsla(0, 0%, 88%, 1)",
+        "form-label-col": "hsla(0, 0%, 31%, 1)",
+        "form-placeholder":"hsla(0, 0%, 74%, 1)",
+        "save-btn":"hsla(214, 84%, 56%, 1)",
+        "logout-red":"hsla(0, 79%, 63%, 1)",
+        "hover-bg":"hsla(0, 0%, 95%, 1)",
         "invite-text-light": "hsla(0, 0%, 20%, 1)",
         "profile-text-main-light": "hsla(0, 0%, 0%, 1)",
         "profile-text-label-light": "hsla(0, 0%, 74%, 1)",
@@ -41,10 +61,10 @@ const config: Config = {
         "register-btn": "hsla(214, 84%, 56%, 1)",
         "register-btn-txt": "hsla(0, 0%, 100%, 1)",
         "foreground-dark": "hsl(260, 8%, 15%)",
-        "foreground-light": "hsla(0, 0%, 100%, 1)",
-          "custom-ash":       "hsl(0, 0%, 74%)",  
+        "foreground-light": "hsl(240, 11%, 98%)",
+        "custom-ash":       "hsl(0, 0%, 74%)",  
       },
-      minWidth:{
+      screens:{
         "tablet":"400px"
       }
     },
