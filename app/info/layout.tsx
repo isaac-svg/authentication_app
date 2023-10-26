@@ -25,16 +25,16 @@ const layout = ({children}:layoutProp) => {
     const {data} = useSession()
 
     let session =  data as sessionType
-    useEffect(()=>{
-       if (data){
-        updateImage()
-       }
-    },[data])
+    // useEffect(()=>{
+    //    if (data){
+    //     updateImage()
+    //    }
+    // },[data])
 
-    const updateImage = () =>{
-        console.log(session, "session from function")
-        setUserData(session)
-    }
+    // const updateImage = () =>{
+    //     console.log(session, "session from function")
+    //     setUserData(session)
+    // }
    
 
 
@@ -47,9 +47,9 @@ const layout = ({children}:layoutProp) => {
         <div className=" flex gap-2 items-center
         ">
         <div className="w-10 h-10 rounded-lg relative overflow-hidden cursor-pointer">
-        <img alt='profile pic' src={`${session?.user.image!}`} className={`w-full h-full absolute object-center bg-gradient-to-br from-slate-300 to-slate-100 ${!userData.user.image && "animate-pulse"} shadow-sm text-transparent`}/>
+        <img alt='profile pic' src={`${userData?.user.image!}`} className={`w-full h-full absolute object-center bg-gradient-to-br from-slate-300 to-slate-100 ${!userData?.user.image && "animate-pulse"} shadow-sm text-transparent`}/>
         </div>
-        <span className='cursor-pointer text-profile-text-label-ligh dark:text-invite-text-dark'>{session?.user.name}</span>
+        <span className='cursor-pointer text-profile-text-label-ligh dark:text-invite-text-dark'>{userData?.user.name}</span>
         <span className='cursor-pointer' onClick={()=>setIsOPen(!isOpen)}>
             {isOpen ?<img src="/images/expand_less.svg" alt="more" />:<img src="/images/expand_more.svg" alt="less" />}
             

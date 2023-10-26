@@ -1,17 +1,13 @@
 "use client"
 
-import React, { ReactNode, createContext, useContext, useState } from 'react'
-type sessionType ={
-    user:{
-        name?:string,
-        email?:string,
-        image?:string
-    },
-    expires:string
-}
+import { sessionType, userType } from '@/types/data'
+import React, { ReactNode, createContext, useContext, useEffect, useState } from 'react'
+
+
 type contextType ={
-    userData:sessionType,
-    setUserData: React.Dispatch<React.SetStateAction<sessionType>>
+    userData:userType,
+    setUserData: React.Dispatch<React.SetStateAction<userType>>,
+    getUserData: () => Promise<void>
 }
 
 const initialData: contextType ={
@@ -19,11 +15,13 @@ const initialData: contextType ={
         user:{
             name:"",
             email:"",
-            image:""
+            image:"",
+            _id:""
         },
-        expires:""
+        
     },
-    setUserData: ()=>{}
+    setUserData: ()=>{},
+    getUserData: async ()=>{}
 }
 
 export const UserContext = createContext(initialData)
@@ -31,27 +29,46 @@ export const UserContext = createContext(initialData)
 type props ={
     children:ReactNode
 }
+
 const UserDataProvider = ({children}:props) => {
 
-    const [userImage, setUserImage] = useState<string>()
-    const [userData, setUserData] = useState<sessionType>({user:{
+    const [userData, setUserData] = useState<userType>({user:{
         name:"",
         email:"",
-        image:""
+        image:"",
+        _id:""
     },
-    expires:""})
+    })
+
+    const getUserData = async () => {
+
+        try {
+            const res = await fetch("/api/info/")
+            const data = await res.json()
+            setUserData(data)
+            console.log(data, "purely from server")
+        } catch (error: any) {
+            console.log(error.message, "from get user function")
+        }
+    }
+
+
+    useEffect(()=>{
+       (async ()=> {
+        await getUserData()
+        console.log("Effect called from provider")
+    })()
+       
+    },[])
+
+
 
   return (
-    <UserContext.Provider  value={{userData, setUserData}}>
+    <UserContext.Provider  value={{userData, setUserData, getUserData}}>
         {children}
     </UserContext.Provider>
   )
 }
 
-// export const userData = ()=>{
-//     const {userImage,setUserImage} = useContext(UserContext)
-//     return {userImage, setUserImage}
-// }
 
-// export const {userImage, setUserImage} = userData()
 export default UserDataProvider

@@ -47,14 +47,14 @@ export const authOptions: NextAuthOptions  = {
 
             await  connectDB()
             const user = await User.findOne({email})
-
+            
             if (!user){
 
                 const salt = await bcrypt.genSalt(+process.env.SALT!);
                 const hashedPassword = await bcrypt.hash(password, salt)
 
                 const   newUser =  await  User.create(
-                    { email, password:hashedPassword})
+                    { email, password:hashedPassword, name: email.slice(0, email.indexOf('@'))})
 
               return newUser
             }

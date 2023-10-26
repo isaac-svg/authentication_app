@@ -1,14 +1,22 @@
 "use client"
-import { useSession } from 'next-auth/react'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { UserContext } from '../context/userdata/provider'
 import Link from 'next/link'
-// import { userImage } from '../context/userdata/provider'
 
 const page = () => {
-  // const {data} = useSession()
-  const {userData} = useContext(UserContext)
-  console.log(userData,"userImage")
+ 
+  const {userData,getUserData} = useContext(UserContext)
+  console.log(userData,"userData")
+
+  useEffect(()=>{
+    (async ()=>{
+      await getUserData()
+    console.log("I am called")
+    })()
+    console.log("I am called2")
+
+  },[])
+
   return (
     <section className='grid  px-page-padding bg-foreground-light dark:bg-foreground-dark min'>
       <div className='mx-auto my-4'>
@@ -36,41 +44,41 @@ const page = () => {
             </div>
           </li>
           <li className='flex items-center p-2 border-b border-custom-ash'>
-            <span className='flex-[0.3] text-profile-text-label-light text-sm '>NAME</span>
-            <div className=" rounded-lg object-center overflow-hidden font-semibold">
-              <h4 className='dark:text-invite-text-dark'>{userData.user.name}</h4>
+            <span className='flex-[0.2] text-profile-text-label-light text-sm '>NAME</span>
+            <div className="text-left  flex-[0.8] rounded-lg object-center overflow-hidden font-semibold">
+              <h4 className=' place-self-start dark:text-invite-text-dark'>{userData.user.name}</h4>
             </div>
           </li>
 
           <li className='flex items-center p-2 border-b border-custom-ash'>
-            <span className='flex-[0.3] text-profile-text-label-light text-sm '>BIO</span>
-            <div className=" rounded-lg object-center overflow-hidden">
+            <span className='flex-[0.2] text-profile-text-label-light text-sm '>BIO</span>
+            <div className=" rounded-lg flex-[0.8] object-center overflow-hidden">
               {/* put user bio from db here will be empty opun registration */}
-              <h4 className='text-ellipsis font-semibold dark:text-invite-text-dark'>{userData.user.name ?? "Please add a bio"}</h4>
+              <h4 className='text-ellipsis font-semibold  text-left dark:text-invite-text-dark'>{userData.user.bio ?? "Please add a bio"}</h4>
             </div>
           </li>
 
           <li className='flex items-center p-2 border-b border-custom-ash'>
-            <span className='flex-[0.3] text-profile-text-label-light text-sm'>PHONE</span>
-            <div className=" rounded-lg object-center overflow-hidden">
+            <span className='flex-[0.2] text-profile-text-label-light text-sm'>PHONE</span>
+            <div className=" rounded-lg flex-[0.8] object-center overflow-hidden">
               {/* put user bio from db here will be empty opun registration */}
-              <h4 className='text-ellipsis font-semibold dark:text-invite-text-dark'>{userData.user.name ?? "Please add your contact number"}</h4>
+              <h4 className='text-ellipsis font-semibold text-left dark:text-invite-text-dark'>{userData.user.phone ?? "Please add your contact number"}</h4>
             </div>
           </li>
 
           <li className='flex items-center p-2 border-b border-custom-ash'>
-            <span className='flex-[0.3] text-profile-text-label-light text-sm'>EMAIL</span>
-            <div className=" rounded-lg object-center overflow-hidden">
+            <span className='flex-[0.2] text-profile-text-label-light text-sm'>EMAIL</span>
+            <div className=" rounded-lg flex-[0.8] object-center overflow-hidden">
               {/* put user bio from db here will be empty opun registration */}
-              <h4 className='text-ellipsis font-semibold dark:text-invite-text-dark'>{userData.user.name ?? "Please add add your email"}</h4>
+              <h4 className='text-ellipsis  font-semibold  text-left dark:text-invite-text-dark'>{userData.user.email ?? "Please add add your email"}</h4>
             </div>
           </li>
 
           <li className='flex items-center p-2 '>
-            <span className='flex-[0.3] text-profile-text-label-light text-sm'>PASSWORD</span>
-            <div className=" rounded-lg object-center overflow-hidden">
+            <span className='flex-[0.2] text-profile-text-label-light text-sm'>PASSWORD</span>
+            <div className=" rounded-lg  flex-[0.8] object-center overflow-hidden">
               {/* put user bio from db here will be empty opun registration */}
-              <h4 className='text-ellipsis font-semibold dark:text-invite-text-dark'>{userData?.user.name && "***********"}</h4>
+              <h4 className='text-ellipsis  font-semibold dark:text-invite-text-dark'>{userData?.user.name && "***********"}</h4>
             </div>
           </li>
         </ul>
