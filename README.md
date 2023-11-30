@@ -1,4 +1,5 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![image](https://github.com/isaac-svg/authentication_app/assets/109481712/6109d11c-5eb6-42ea-ba43-a53f653c38be)
 
 ## Getting Started
 
